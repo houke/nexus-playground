@@ -11,6 +11,10 @@ export function renderMenu(container: HTMLElement, callbacks: MenuCallbacks): vo
 
   container.innerHTML = `
     <div class="beast-menu">
+      <header class="menu-header">
+        <button class="back-btn" aria-label="Back to home">←</button>
+      </header>
+      
       <div class="menu-content">
         <h1 class="menu-title">
           <span class="title-emoji">🐻</span>
@@ -27,10 +31,6 @@ export function renderMenu(container: HTMLElement, callbacks: MenuCallbacks): vo
           <button class="menu-btn" data-action="settings">
             <span class="btn-icon">⚙</span>
             SETTINGS
-          </button>
-          <button class="menu-btn" data-action="back">
-            <span class="btn-icon">←</span>
-            BACK
           </button>
         </div>
         
@@ -64,6 +64,8 @@ export function renderMenu(container: HTMLElement, callbacks: MenuCallbacks): vo
   `
 
   // Event listeners
+  container.querySelector('.back-btn')?.addEventListener('click', onBack)
+
   const buttons = container.querySelectorAll('.menu-btn')
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -74,9 +76,6 @@ export function renderMenu(container: HTMLElement, callbacks: MenuCallbacks): vo
           break
         case 'settings':
           onSettings()
-          break
-        case 'back':
-          onBack()
           break
       }
     })

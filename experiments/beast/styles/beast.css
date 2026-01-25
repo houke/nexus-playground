@@ -81,6 +81,31 @@ body {
   pointer-events: none;
 }
 
+.menu-header {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+}
+
+.back-btn {
+  background: var(--beast-bg);
+  border: 1px solid var(--beast-border);
+  border-radius: 4px;
+  color: var(--beast-text);
+  width: 44px;
+  height: 44px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'VT323', monospace;
+}
+
+.back-btn:hover {
+  border-color: var(--beast-text);
+  background: rgba(0, 255, 0, 0.1);
+}
+
 .menu-content {
   position: relative;
   z-index: 1;

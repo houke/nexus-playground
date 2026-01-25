@@ -54,6 +54,14 @@ const experiments = [
     available: true,
   },
   {
+    id: 'pinspiration',
+    name: 'Pinspiration',
+    emoji: '📌',
+    description: 'Discover random inspiration from any Pinterest board',
+    tags: ['Tool', 'Discovery', 'Pinterest'],
+    available: true,
+  },
+  {
     id: 'coming-soon',
     name: 'Coming Soon',
     emoji: '🔮',
@@ -128,7 +136,7 @@ export function renderLandingPage(container: HTMLElement): void {
                 ${
                   exp.available
                     ? `<a href="${basePath}/experiments/${exp.id}/" class="btn btn-primary experiment-cta">
-                        Play Now
+                        ${exp.tags.includes('Tool') ? 'Try Now' : 'Play Now'}
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

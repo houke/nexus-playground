@@ -52,6 +52,17 @@ A faithful recreation of the classic DOS game **Mamba** (1989) reimagined for mo
 
 **Play it:** [Live Demo](https://houke.github.io/nexus-playground/experiments/mamba/)
 
+### 🐻 Beast (`experiments/beast/`)
+
+A faithful recreation of the classic DOS game **Beast** (1984) reimagined for modern browsers:
+
+- **Authentic DOS Aesthetic**: VT323 font, CGA/EGA color palette, scanline effects
+- **Classic Gameplay**: Push blocks to crush beasts in this puzzle-action game
+- **Retro Sound**: Chiptune-inspired audio effects
+- **PWA Ready**: Install and play offline
+
+**Play it:** [Live Demo](https://houke.github.io/nexus-playground/experiments/beast/)
+
 ---
 
 ## 🚀 Running Locally

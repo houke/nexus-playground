@@ -21,6 +21,7 @@ export default defineConfig({
         snake: resolve(__dirname, 'experiments/snake/index.html'),
         mamba: resolve(__dirname, 'experiments/mamba/index.html'),
         beast: resolve(__dirname, 'experiments/beast/index.html'),
+        pinspiration: resolve(__dirname, 'experiments/pinspiration/index.html'),
       },
     },
   },
