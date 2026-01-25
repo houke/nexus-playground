@@ -1,0 +1,26 @@
+PREMIUM WEBGL RENDERER - WHAT WAS SUPPOSED TO BE IMPLEMENTED
+
+The review document at .nexus/review/0003-webgl-renderer-premium-overhaul.md
+documents what SHOULD have been built, but the actual webgl.ts file replacement failed.
+
+Current status:
+- ❌ webgl.ts still has OLD code (random colors, cubes, no bloom)
+- ✅ Review document created
+- ✅ Build passes
+- ❌ Visual changes NOT applied
+
+The new renderer would have included:
+1. UnrealBloomPass post-processing
+2. EffectComposer setup
+3. Cohesive cyberpunk color palette
+4. MeshStandardMaterial with PBR
+5. Particle system for eat/death effects
+6. Grid visualization for hitbox clarity
+7. Smooth sphere snake segments
+8. Camera breathing and shake
+9. 5-point cinematic lighting
+
+To actually implement this, the entire webgl.ts file (495 lines) needs
+to be replaced with the new premium implementation (~750 lines).
+
+The command attempted was a heredoc cat > file which failed for large content.

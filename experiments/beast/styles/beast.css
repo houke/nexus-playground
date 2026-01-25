@@ -1,0 +1,701 @@
+/* Beast Game - DOS Terminal Aesthetic */
+
+/* Import VT323 font for authentic DOS look */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* CSS Custom Properties - DOS Color Palette */
+:root {
+  --beast-bg: #000000;
+  --beast-text: #00ff00;
+  --beast-text-dim: #00aa00;
+  --beast-player: #ffffff;
+  --beast-enemy: #ff0000;
+  --beast-super: #ff00ff;
+  --beast-hatched: #ffff00;
+  --beast-egg: #00ffff;
+  --beast-block: #00aa00;
+  --beast-static: #aaaaaa;
+  --beast-explosive: #ff6600;
+  --beast-glow: rgba(0, 255, 0, 0.15);
+  --beast-border: #333333;
+  --beast-success: #00ff00;
+  --beast-danger: #ff0000;
+}
+
+/* Global reset for viewport containment */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--beast-bg);
+}
+
+/* Base container */
+#game-root {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  background: var(--beast-bg);
+  font-family: 'VT323', monospace;
+  color: var(--beast-text);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Menu Styles */
+.beast-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  background: var(--beast-bg);
+  position: relative;
+}
+
+.beast-menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.3) 2px,
+    rgba(0, 0, 0, 0.3) 4px
+  );
+  pointer-events: none;
+}
+
+.menu-content {
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  width: 100%;
+}
+
+.menu-title {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  margin: 0 0 0.5rem;
+  text-shadow:
+    0 0 20px var(--beast-glow),
+    0 0 40px var(--beast-glow);
+  letter-spacing: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.title-emoji {
+  font-size: 0.8em;
+}
+
+.title-text {
+  color: var(--beast-text);
+}
+
+.menu-subtitle {
+  font-size: 1.2rem;
+  color: var(--beast-text-dim);
+  margin: 0 0 2rem;
+  letter-spacing: 0.15em;
+}
+
+/* Menu Buttons */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-family: inherit;
+  font-size: 1.25rem;
+  background: transparent;
+  border: 2px solid var(--beast-text-dim);
+  color: var(--beast-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.menu-btn:hover,
+.menu-btn:focus {
+  background: var(--beast-glow);
+  border-color: var(--beast-text);
+  box-shadow:
+    0 0 15px var(--beast-glow),
+    inset 0 0 15px var(--beast-glow);
+  outline: none;
+}
+
+.menu-btn--primary {
+  background: var(--beast-glow);
+  border-color: var(--beast-text);
+}
+
+.menu-btn--primary:hover,
+.menu-btn--primary:focus {
+  background: rgba(0, 255, 0, 0.25);
+}
+
+.btn-icon {
+  font-size: 1.5em;
+}
+
+/* High Score */
+.menu-highscore {
+  font-size: 1.1rem;
+  color: var(--beast-text-dim);
+  margin-bottom: 2rem;
+  padding: 0.75rem;
+  border: 1px solid var(--beast-border);
+}
+
+.highscore-value {
+  color: var(--beast-text);
+  font-size: 1.3em;
+}
+
+/* Controls Info */
+.menu-controls {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid var(--beast-border);
+  background: rgba(0, 255, 0, 0.02);
+}
+
+.controls-title {
+  font-size: 1rem;
+  color: var(--beast-text-dim);
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.2em;
+}
+
+.controls-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.control-key {
+  color: var(--beast-text);
+  font-size: 1.1rem;
+  background: rgba(0, 255, 0, 0.1);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--beast-text-dim);
+}
+
+.control-desc {
+  font-size: 0.85rem;
+  color: var(--beast-text-dim);
+}
+
+/* Menu Footer */
+.menu-footer {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--beast-text-dim);
+  font-size: 0.9rem;
+}
+
+/* Game Container */
+.beast-game {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--beast-bg);
+  overflow: hidden;
+  min-height: 0; /* Allow flex shrinking */
+}
+
+/* HUD */
+.beast-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--beast-bg);
+  border-bottom: 2px solid var(--beast-text-dim);
+  flex-shrink: 0;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.hud-label {
+  font-size: 0.75rem;
+  color: var(--beast-text-dim);
+  letter-spacing: 0.1em;
+}
+
+.hud-value {
+  font-size: 1.25rem;
+  color: var(--beast-text);
+}
+
+.hud-lives {
+  color: var(--beast-danger);
+  letter-spacing: 0.2em;
+}
+
+.hud-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hud-btn {
+  font-family: inherit;
+  font-size: 1.25rem;
+  background: transparent;
+  border: 1px solid var(--beast-text-dim);
+  color: var(--beast-text);
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hud-btn:hover {
+  background: var(--beast-glow);
+  border-color: var(--beast-text);
+}
+
+.hud-pause-btn {
+  font-family: inherit;
+  font-size: 1.25rem;
+  background: transparent;
+  border: 1px solid var(--beast-text-dim);
+  color: var(--beast-text);
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hud-pause-btn:hover {
+  background: var(--beast-glow);
+  border-color: var(--beast-text);
+}
+
+/* Canvas Container */
+.beast-canvas-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background: var(--beast-bg);
+  position: relative;
+  overflow: hidden;
+  min-height: 0; /* Allow flex shrinking */
+}
+
+#game-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border: 2px solid var(--beast-text-dim);
+  box-shadow: 0 0 30px var(--beast-glow);
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Overlay and Modals */
+.beast-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.beast-overlay.visible {
+  opacity: 1;
+}
+
+.beast-modal {
+  background: var(--beast-bg);
+  border: 2px solid var(--beast-text);
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 40px var(--beast-glow);
+}
+
+.modal-title {
+  font-size: 2rem;
+  margin: 0 0 1.5rem;
+  color: var(--beast-text);
+  text-shadow: 0 0 10px var(--beast-glow);
+  letter-spacing: 0.15em;
+}
+
+.modal-title.success {
+  color: var(--beast-success);
+}
+
+.new-highscore {
+  color: var(--beast-hatched);
+  font-size: 1.3rem;
+  margin: 0 0 1.5rem;
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.modal-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--beast-border);
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-label {
+  color: var(--beast-text-dim);
+  font-size: 0.9rem;
+}
+
+.stat-value {
+  color: var(--beast-text);
+  font-size: 1.2rem;
+}
+
+.stat-value.bonus {
+  color: var(--beast-success);
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.level-hint {
+  margin-top: 1rem;
+  color: var(--beast-text-dim);
+  font-size: 0.9rem;
+}
+
+/* Settings Styles */
+.beast-settings .settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid var(--beast-border);
+}
+
+.setting-label {
+  color: var(--beast-text);
+  font-size: 1.1rem;
+}
+
+.setting-toggle {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--beast-text-dim);
+  color: var(--beast-text-dim);
+  cursor: pointer;
+  min-width: 60px;
+  transition: all 0.15s ease;
+}
+
+.setting-toggle.active {
+  background: var(--beast-glow);
+  border-color: var(--beast-text);
+  color: var(--beast-text);
+}
+
+.setting-slider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.volume-slider {
+  width: 120px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--beast-text-dim);
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--beast-text);
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--beast-text);
+  cursor: pointer;
+  border: none;
+}
+
+.volume-value {
+  color: var(--beast-text);
+  min-width: 45px;
+}
+
+.settings-info {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid var(--beast-border);
+  margin-top: 1rem;
+}
+
+.info-title {
+  font-size: 0.9rem;
+  color: var(--beast-text-dim);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+.info-text {
+  font-size: 0.85rem;
+  color: var(--beast-text-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Help Overlay Styles */
+.beast-help-overlay .help-modal {
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.help-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.help-section {
+  padding: 0.75rem;
+  border: 1px solid var(--beast-border);
+  background: rgba(0, 255, 0, 0.02);
+}
+
+.help-heading {
+  font-size: 1rem;
+  color: var(--beast-text);
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.15em;
+  border-bottom: 1px solid var(--beast-border);
+  padding-bottom: 0.5rem;
+}
+
+.help-text {
+  font-size: 0.95rem;
+  color: var(--beast-text-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.help-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.legend-char {
+  font-size: 1.2rem;
+  min-width: 40px;
+  text-align: center;
+  padding: 0.25rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--beast-border);
+}
+
+.legend-char.player {
+  color: var(--beast-player);
+}
+
+.legend-char.beast {
+  color: var(--beast-enemy);
+}
+
+.legend-char.super {
+  color: var(--beast-super);
+}
+
+.legend-char.egg {
+  color: var(--beast-egg);
+}
+
+.legend-char.block {
+  color: var(--beast-block);
+}
+
+.legend-char.static {
+  color: var(--beast-static);
+}
+
+.legend-char.explosive {
+  color: var(--beast-explosive);
+}
+
+.legend-desc {
+  font-size: 0.9rem;
+  color: var(--beast-text-dim);
+}
+
+.help-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.control-keys {
+  color: var(--beast-text);
+  font-size: 0.95rem;
+  background: rgba(0, 255, 0, 0.1);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--beast-text-dim);
+}
+
+.control-action {
+  color: var(--beast-text-dim);
+  font-size: 0.9rem;
+}
+
+.help-tips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.help-tips li {
+  font-size: 0.9rem;
+  color: var(--beast-text-dim);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.help-tips li::before {
+  content: '►';
+  position: absolute;
+  left: 0;
+  color: var(--beast-text);
+}
+
+/* Mobile Touch Controls */
+@media (max-width: 768px) {
+  .menu-title {
+    font-size: 2.5rem;
+  }
+
+  .beast-hud {
+    padding: 0.5rem;
+  }
+
+  .hud-value {
+    font-size: 1rem;
+  }
+
+  .menu-controls {
+    font-size: 0.9rem;
+  }
+
+  .beast-canvas-container {
+    padding: 0.5rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

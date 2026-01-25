@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#1a1a24"/>
+    </linearGradient>
+    <linearGradient id="snake" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="192" height="192" rx="32" fill="url(#bg)"/>
+  
+  <!-- Snake body (stylized N for Nexus) -->
+  <g transform="translate(32, 32)">
+    <!-- Snake path forming N shape -->
+    <path d="M 24 112 
+             L 24 24 
+             L 40 24 
+             L 40 72 
+             L 88 24 
+             L 104 24 
+             L 104 112 
+             L 88 112 
+             L 88 64 
+             L 40 112 
+             Z" 
+          fill="url(#snake)"/>
+    
+    <!-- Snake head -->
+    <circle cx="104" cy="24" r="12" fill="#22c55e"/>
+    <circle cx="100" cy="20" r="3" fill="#0a0a0f"/>
+    
+    <!-- Snake tongue -->
+    <path d="M 116 24 L 128 20 L 124 24 L 128 28 L 116 24" fill="#ef4444"/>
+  </g>
+</svg>

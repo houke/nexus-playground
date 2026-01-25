@@ -1,0 +1,68 @@
+import eslint from '@eslint/js'
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsparser from '@typescript-eslint/parser'
+import prettier from 'eslint-config-prettier'
+
+export default [
+  eslint.configs.recommended,
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        requestAnimationFrame: 'readonly',
+        cancelAnimationFrame: 'readonly',
+        localStorage: 'readonly',
+        AudioContext: 'readonly',
+        HTMLCanvasElement: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLAnchorElement: 'readonly',
+        HTMLInputElement: 'readonly',
+        KeyboardEvent: 'readonly',
+        TouchEvent: 'readonly',
+        MouseEvent: 'readonly',
+        Event: 'readonly',
+        CustomEvent: 'readonly',
+        CanvasRenderingContext2D: 'readonly',
+        WebGLRenderingContext: 'readonly',
+        GPURenderPassEncoder: 'readonly',
+        GPUComputePassEncoder: 'readonly',
+        GPUCommandEncoder: 'readonly',
+        GPUBindGroup: 'readonly',
+        GPUBindGroupLayout: 'readonly',
+        GPUShaderModule: 'readonly',
+        GPUShaderStage: 'readonly',
+        GPUBufferUsage: 'readonly',
+        GPUTextureUsage: 'readonly',
+        GPUQueue: 'readonly',
+        GPUSampler: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+    },
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-explicit-any': 'error',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+    },
+  },
+  {
+    ignores: ['dist/**', 'node_modules/**', '*.config.js'],
+  },
+  prettier,
+]
