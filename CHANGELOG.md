@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/houke/nexus-playground/compare/v1.0.0...v1.0.1) (2026-01-25)
+
+
+### Bug Fixes
+
+* do not fail without tests ([41aba57](https://github.com/houke/nexus-playground/commit/41aba573b36f5dc7856b5849f0d82d0f1a2da8a5))
+
 # 1.0.0 (2026-01-25)
 
 
