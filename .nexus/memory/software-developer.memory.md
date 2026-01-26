@@ -14,6 +14,12 @@ Persistent preferences and learned patterns for the **@software-developer** agen
 - **Reason**: User preference for responsive design in retro games
 - **Added**: 2026-01-25
 
+### Landing Page Experiment Cards
+
+- **Preference**: Always add a new experiment card to the landing page when a new experiment is being added
+- **Reason**: Ensures new experiments are discoverable and maintains consistent navigation
+- **Added**: 2026-01-26
+
 <!--
 Example entry:
 ### Mobile-First Development

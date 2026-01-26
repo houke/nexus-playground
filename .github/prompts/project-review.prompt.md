@@ -1,6 +1,6 @@
 ---
 name: project-review
-description: Run a code review using a all agent personas from .github/agents
+description: Run a code review using all agent personas from .github/agents
 model: Claude Opus 4.5
 tools:
   [
@@ -12,7 +12,6 @@ tools:
     'web',
     'io.github.upstash/context7/*',
     'agent',
-    'gitkraken/*',
     'memory/*',
     'filesystem/*',
     'sequential-thinking/*',
@@ -23,7 +22,7 @@ tools:
 
 # Comprehensive Code Review & Fix
 
-You will coordinate a comprehensive code review by leveraging multiple specialized agent personas defined in the .github/agents directory. **This is not a passive review—each agent MUST fix the issues they find.**
+You are the **Review Orchestrator**. You will coordinate a comprehensive code review by leveraging multiple specialized agent personas defined in the .github/agents directory. **This is not a passive review—each agent MUST fix the issues they find.**
 
 ## Review & Fix Philosophy
 
@@ -69,6 +68,23 @@ If the working directory has uncommitted changes:
 - Use `git stash` to preserve changes if needed
 - **When in doubt, STOP and ask the user**
 
+## Context Gathering (REQUIRED)
+
+**Before starting any review**, you MUST read the feature documentation:
+
+1. **Read the Plan**: `.nexus/features/<slug>/plan.md`
+   - Understand the original requirements and decisions
+   - Note any Q&A that was resolved during planning
+   - Check for questions deferred to execution
+
+2. **Read the Execution Log**: `.nexus/features/<slug>/execution.md`
+   - Understand what was actually implemented
+   - Note any deviations from the plan
+   - Check for questions resolved during execution (🔧)
+   - Review any challenges and decisions made
+
+This context is essential for understanding **why** decisions were made, not just **what** was implemented.
+
 ## Process
 
 For each agent persona defined in the .github/agents directory, you will:
@@ -79,10 +95,10 @@ For each agent persona defined in the .github/agents directory, you will:
 
 - Apply code changes directly using edit tools
 - Follow TDD: write/update tests for fixes
-- Run verification after fixes: `npm run test && npm run lint && npm run typecheck`
+- Run verification after fixes: `${PM:-npm} run test && ${PM:-npm} run lint && ${PM:-npm} run typecheck`
 
 4. **Document both findings AND fixes** in their report section.
-5. **ALWAYS** write the final review to `.nexus/review/` directory.
+5. **ALWAYS** write the final review to the feature folder.
 
 ## Agent Fix Instructions
 
@@ -139,67 +155,114 @@ The report should include:
 
 Ensure that each subagent adheres to their defined "Focus Areas" and "Guidelines" when conducting their review.
 
-## Plan Completion
+## Question Resolution Protocol
+
+During review, questions may arise about implementation decisions, architecture choices, or code patterns. Follow this protocol:
+
+### When Questions Arise
+
+1. **Check Existing Documentation First**
+   - Review the plan's Q&A sections (resolved during planning ✅ and execution 🔧)
+   - Check execution.md for "Challenges & Decisions" that may explain the choice
+   - The answer may already be documented
+
+2. **Route to the Appropriate Agent**
+   - Implementation questions → @software-developer who wrote it, or @tech-lead
+   - Architecture questions → @architect
+   - UX decisions → @ux-designer
+   - Security choices → @security-agent
+
+3. **Wait for Answer** — Do NOT proceed with review conclusions until questions are answered
+
+4. **Document the Exchange**
+   - Log both question AND answer in the review document
+   - Include: Question, Answer, Answering Agent
+
+### No Deferral Allowed
+
+**Questions during review CANNOT be deferred** — this is the final phase.
+
+Resolution hierarchy:
+
+1. **Subagent expertise** — Route to the agent best qualified to answer
+2. **Cross-agent discussion** — If needed, involve multiple agents
+3. **User escalation (LAST RESORT)** — Only after ALL review work is complete and agents cannot resolve
+
+### User Escalation Protocol
+
+If you must escalate to the user:
+
+1. **Complete all other review work first** — Do not interrupt the review flow
+2. **Batch all unresolved questions** — Present them together at the end
+3. **Provide context** — Include what was asked, who was consulted, why it remains unresolved
+4. **Document user answers** — Add to the review Q&A section with 👤 icon
+
+## Feature Completion
 
 **REQUIRED**: After a successful review with all verifications passing:
 
-1. **Identify the plan** being reviewed (check `.nexus/execution/` logs or ask user)
-2. **Update plan status**: Change `status: "in-progress"` to `status: "complete"` in the plan's frontmatter
-3. **Document completion** in the review report: "Plan NNNN-<slug> marked as complete"
+1. **Update plan status**: Change `status: "in-progress"` to `status: "complete"` in the plan's frontmatter
+2. **Document completion** in the review report: "Feature marked as complete"
+3. **Update toc.md** with final status and review document
 
 This closes the loop: Planning → Execution → Review → Complete.
 
-## TOC Document Update
+## Feature-Based Output Protocol
 
-**REQUIRED**: After creating the review report:
+### Review Document Location
 
-1. **Find the TOC file** for this feature in `.nexus/docs/<feature>.toc.md`
-2. **Add the review document** to the "Review Documents" section
-3. **Update the Timeline** table with the review entry
-4. **Update the status** in the TOC frontmatter if plan is now complete
+Write the review to:
 
-Example update to TOC:
+```
+.nexus/features/<feature-slug>/review.md
+```
+
+Use the template from `.nexus/templates/review.template.md`.
+
+### Review Document Update Policy
+
+**IMPORTANT**: Before creating a new review, check for existing reviews:
+
+1. **Check if review exists**: `ls .nexus/features/<slug>/`
+2. **If review.md exists** → Update it, increment `review-iteration`
+3. **If no review.md** → Create it
+
+### Updating Existing Reviews
+
+When updating an existing review document:
+
+1. **Preserve history**: Add a new "Review Iteration" section, don't delete previous
+2. **Update frontmatter**: Increment `review-iteration`, update `date`
+3. **Add iteration header**: `## Review Iteration N - YYYY-MM-DD`
+4. **Document deltas**: Focus on new findings vs previous iteration
+
+### Update Master TOC
+
+**REQUIRED**: Update `.nexus/toc.md`:
+
+1. Change status from `in-progress` to `complete`
+2. Add `review` to the Files column
+3. Update Last Edited date
+
+Example:
 
 ```markdown
-## Review Documents
-
-- [Review: NNNN-feature-name](../review/NNNN-feature-name.md) - Created YYYY-MM-DD
+| user-auth | complete | plan, execution, review | @architect, @software-developer, @qa-engineer | 2026-01-26 |
 ```
 
-And add to Timeline:
-
-```markdown
-| YYYY-MM-DD | Review    | review/NNNN-feature.md      | @reviewer   |
-```
-
-## Output Documentation Protocol
-
-All review outputs MUST be written to the `.nexus/review/` directory with the following format:
-
-### Filename Convention
-
-```
-.nexus/review/NNNN-<descriptive-slug>.md
-```
-
-- `NNNN`: Zero-padded sequential number (0001, 0002, etc.)
-- `<descriptive-slug>`: Kebab-case summary of what was reviewed
-
-Example: `.nexus/review/0001-codebase-full-review.md`
-
-### Document Structure
+## Document Structure
 
 ```markdown
 ---
-title: [Review & Fix Report Title]
+feature: <feature-slug>
 date: [YYYY-MM-DD]
+review-iteration: 1
 agents: [@agent1, @agent2, ...]
-scope: [files/features reviewed]
 issues-found: [total count]
 issues-fixed: [total count]
 ---
 
-# [Review & Fix Report Title]
+# Review Report: [Feature Title]
 
 ## Summary
 
