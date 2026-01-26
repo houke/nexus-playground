@@ -1,7 +1,15 @@
 ---
 title: 'Mamba - Consolidated Code Review & Fix Reports'
 date: '2026-01-25'
-agents: ['@tech-lead', '@qa-engineer', '@security', '@ux-designer', '@visual-designer', '@software-developer']
+agents:
+  [
+    '@tech-lead',
+    '@qa-engineer',
+    '@security',
+    '@ux-designer',
+    '@visual-designer',
+    '@software-developer',
+  ]
 scope: Mamba experiment review & endless mode conversion
 issues-found: 8
 issues-fixed: 23
@@ -21,6 +29,7 @@ This document consolidates multiple review sessions for the Mamba game experimen
 Covered the complete Mamba game implementation across 15 new files in `experiments/mamba/` plus integration with the landing page. Review conducted from multiple agent perspectives: tech-lead (code quality), qa-engineer (testing/accessibility), security (vulnerabilities), ux-designer (interactions), and visual-designer (polish).
 
 **Key outcomes:**
+
 - 8 issues identified and fixed
 - Accessibility significantly improved with ARIA attributes across all UI components
 - Pre-existing lint errors in unrelated files cleaned up
@@ -38,22 +47,27 @@ Covered the complete Mamba game implementation across 15 new files in `experimen
 ### Issues Fixed
 
 #### @tech-lead
+
 1. Fixed pre-existing lint error: IntersectionObserver undefined (LandingPage.ts)
 2. Removed development artifact files (webgl-new.ts, webgl.ts.backup)
 
 #### @qa-engineer - Accessibility
+
 3. Game over dialog: Added `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, `role="alert"` for high score
 4. Level complete dialog: Added `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, `autofocus` on continue
 5. HUD: Added `role="status"`, `aria-live="polite"`, `aria-label` for score/level/eggs
 6. Menu buttons: Added `type="button"`, `autofocus`, `aria-hidden` for decorative elements
 
 #### @security
+
 7. Verified all dynamic values are numbers from internal state, not user input - SAFE
 
 #### @ux-designer
+
 8. Added `autofocus` attribute to START GAME button
 
 ### Files Modified
+
 - src/components/landing/LandingPage.ts
 - experiments/mamba/ui/gameover.ts
 - experiments/mamba/ui/levelcomplete.ts
@@ -72,16 +86,17 @@ Converted the Mamba game from a level-based progression system to an endless sur
 
 ### Metrics
 
-| Metric        | Before | After |
-| ------------- | ------ | ----- |
-| Issues Found  | -      | 0     |
-| Issues Fixed  | -      | 15    |
-| Lint Errors   | 0      | 0     |
-| Type Errors   | 0      | 0     |
+| Metric       | Before | After |
+| ------------ | ------ | ----- |
+| Issues Found | -      | 0     |
+| Issues Fixed | -      | 15    |
+| Lint Errors  | 0      | 0     |
+| Type Errors  | 0      | 0     |
 
 ### Changes Applied
 
 #### Type System Updates (types.ts)
+
 - Removed `levelcomplete` status
 - Removed `gold` collectible type
 - Removed `level` from GameState
@@ -90,12 +105,14 @@ Converted the Mamba game from a level-based progression system to an endless sur
 - Increased base wall lifespan: MIN: 40→80 ticks, MAX: 150→250 ticks
 
 #### Engine Updates (engine.ts)
+
 - Removed `createLevelState()`, replaced with `createGameState()`
 - Removed `nextLevel()`, `spawnGold()`, `checkGoldTimeout()`
 - Updated shedding mechanic to scale wall lifespan with multiplier
 - Added progressive difficulty through `wallLifespanMultiplier` and `tickRate`
 
 #### UI Updates
+
 - HUD: Shows SHEDS + WALLS count instead of LEVEL + BRONZE
 - Game Over: Shows shedCount and wall count at death
 - Menu: Updated instructions for endless survival mode
@@ -112,12 +129,14 @@ Converted the Mamba game from a level-based progression system to an endless sur
 | 25     | 4.00x (max)              | 320 ticks (~48s)       | 1000 ticks (~150s)     |
 
 ### Gameplay Impact
+
 1. **No "Win" Condition**: Players survive as long as possible
 2. **Score Focus**: High score becomes primary achievement metric
 3. **Risk/Reward**: Shedding increases multiplier but adds persistent walls
 4. **Emergent Difficulty**: Game naturally becomes harder without artificial level gates
 
 ### Files Modified
+
 - experiments/mamba/game/types.ts
 - experiments/mamba/game/engine.ts
 - experiments/mamba/ui/hud.ts
