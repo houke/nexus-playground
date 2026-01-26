@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/houke/nexus-playground/compare/v1.0.1...v1.1.0) (2026-01-25)
+
+
+### Features
+
+* **experiment:** add pinspiration experiment ([5b7b3dc](https://github.com/houke/nexus-playground/commit/5b7b3dc792730eee319492aa4b31a4e4e568d91d))
+
 ## [1.0.1](https://github.com/houke/nexus-playground/compare/v1.0.0...v1.0.1) (2026-01-25)
 
 
