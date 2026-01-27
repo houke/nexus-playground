@@ -2,7 +2,7 @@
 title: Pinspiration Implementation Execution
 date: 2025-01-25
 agents: ['@software-developer', '@devops', '@visual-designer']
-plan-ref: .nexus/plan/0004-pinspiration-experiment.md
+plan-ref: ./plan.md
 status: completed
 ---
 

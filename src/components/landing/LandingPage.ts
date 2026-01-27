@@ -254,7 +254,7 @@ export function renderLandingPage(container: HTMLElement): void {
                 </div>
                 <div class="step-output">
                   <span class="output-label">creates →</span>
-                  <code class="output-file"><span class="file-path">.nexus/plan/</span><span class="file-name" data-field="plan-file">0001-habit-tracker.md</span></code>
+                  <code class="output-file"><span class="file-path">.nexus/features/</span><span class="file-name" data-field="plan-file">habit-tracker/plan.md</span></code>
                 </div>
               </div>
 
@@ -272,12 +272,12 @@ export function renderLandingPage(container: HTMLElement): void {
                 </div>
                 <div class="step-content">
                   <code class="step-command"><span class="prompt-trigger">/</span>project-execution</code>
-                  <p class="step-prompt">"Implement <span class="step-file-ref" data-field="plan-ref">0001-habit-tracker.md</span>"</p>
+                  <p class="step-prompt">"Implement <span class="step-file-ref" data-field="plan-ref">habit-tracker/plan.md</span>"</p>
                   <p class="step-description">Agents implement the plan, delegating tasks by expertise</p>
                 </div>
                 <div class="step-output">
                   <span class="output-label">creates →</span>
-                  <code class="output-file"><span class="file-path">.nexus/execution/</span><span class="file-name" data-field="exec-file">0001-habit-tracker.md</span></code>
+                  <code class="output-file"><span class="file-path">.nexus/features/</span><span class="file-name" data-field="exec-file">habit-tracker/execution.md</span></code>
                 </div>
               </div>
 
@@ -295,12 +295,12 @@ export function renderLandingPage(container: HTMLElement): void {
                 </div>
                 <div class="step-content">
                   <code class="step-command"><span class="prompt-trigger">/</span>project-review</code>
-                  <p class="step-prompt">"Review and fix <span class="step-file-ref" data-field="review-ref">0001-habit-tracker.md</span>"</p>
+                  <p class="step-prompt">"Review and fix <span class="step-file-ref" data-field="review-ref">habit-tracker/execution.md</span>"</p>
                   <p class="step-description">Security, QA, and Tech Lead audit and auto-fix issues</p>
                 </div>
                 <div class="step-output">
                   <span class="output-label">creates →</span>
-                  <code class="output-file"><span class="file-path">.nexus/review/</span><span class="file-name" data-field="review-file">0001-habit-tracker.md</span></code>
+                  <code class="output-file"><span class="file-path">.nexus/features/</span><span class="file-name" data-field="review-file">habit-tracker/review.md</span></code>
                 </div>
               </div>
             </div>
@@ -356,6 +356,42 @@ export function renderLandingPage(container: HTMLElement): void {
                   <span class="status-muted">(docs updated)</span>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Hotfix Section -->
+          <div class="hotfix-section">
+            <h3 class="subsection-title">Quick Hotfixes</h3>
+            <p class="subsection-description">
+              Need to fix a critical bug fast? Use <code class="inline-code">/project-hotfix</code> to document urgent fixes without disrupting your main features:
+            </p>
+            
+            <div class="hotfix-demo">
+              <div class="hotfix-example">
+                <div class="hotfix-scenario">
+                  <span class="hotfix-label">Scenario</span>
+                  <div class="hotfix-description">
+                    <span class="status-icon">🔥</span>
+                    <span>Production bug: Login button not responding</span>
+                  </div>
+                </div>
+                <div class="hotfix-command-wrapper">
+                  <code class="hotfix-command"><span class="prompt-trigger">/</span>project-hotfix</code>
+                  <p class="hotfix-prompt">"Fix login button not responding on mobile"</p>
+                </div>
+                <div class="hotfix-result">
+                  <span class="hotfix-result-label">creates →</span>
+                  <code class="hotfix-file">
+                    <span class="file-path">.nexus/features/_hotfixes/</span>
+                    <span class="file-name">2026-01-27-login-button.md</span>
+                  </code>
+                </div>
+              </div>
+            </div>
+            
+            <div class="hotfix-note">
+              <span class="note-icon">💡</span>
+              <span class="note-text">Hotfixes are tracked separately so they don't interfere with your planned features</span>
             </div>
           </div>
         </div>
@@ -442,27 +478,28 @@ export function renderLandingPage(container: HTMLElement): void {
     const updateWorkflow = () => {
       const value = projectInput.value.trim() || defaultText
       const slug = toSlug(value)
-      const fileName = `0001-${slug}.md`
 
       // Update input text in step 1
       const inputField = container.querySelector('[data-field="input"]')
       if (inputField) inputField.textContent = value
 
-      // Update all file names
-      container
-        .querySelectorAll(
-          '[data-field="plan-file"], [data-field="exec-file"], [data-field="review-file"]'
-        )
-        .forEach((el) => {
-          el.textContent = fileName
-        })
+      // Update plan file
+      const planFile = container.querySelector('[data-field="plan-file"]')
+      if (planFile) planFile.textContent = `${slug}/plan.md`
 
-      // Update file references in steps 2 and 3
-      container
-        .querySelectorAll('[data-field="plan-ref"], [data-field="review-ref"]')
-        .forEach((el) => {
-          el.textContent = fileName
-        })
+      const planRef = container.querySelector('[data-field="plan-ref"]')
+      if (planRef) planRef.textContent = `${slug}/plan.md`
+
+      // Update exec file
+      const execFile = container.querySelector('[data-field="exec-file"]')
+      if (execFile) execFile.textContent = `${slug}/execution.md`
+
+      // Update review file
+      const reviewFile = container.querySelector('[data-field="review-file"]')
+      if (reviewFile) reviewFile.textContent = `${slug}/review.md`
+
+      const reviewRef = container.querySelector('[data-field="review-ref"]')
+      if (reviewRef) reviewRef.textContent = `${slug}/execution.md`
     }
 
     projectInput.addEventListener('input', updateWorkflow)

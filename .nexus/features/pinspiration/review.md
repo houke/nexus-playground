@@ -1,7 +1,7 @@
 ---
 title: 'Pinspiration - Code Review & Fixes (Round 7)'
 date: '2025-01-25'
-plan: '../plan/0004-pinspiration-experiment.md'
+plan: './plan.md'
 type: 'review'
 agents: ['@visual-designer', '@architect', '@software-developer', '@qa-engineer']
 status: complete

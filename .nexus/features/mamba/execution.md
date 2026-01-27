@@ -2,7 +2,7 @@
 title: Mamba Experiment Implementation
 date: 2026-01-24
 agents: ['@software-developer', '@visual-designer']
-plan-ref: .nexus/plan/0002-mamba-experiment.md
+plan-ref: ./plan.md
 status: completed
 ---
 

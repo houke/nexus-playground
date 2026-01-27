@@ -6,13 +6,9 @@
 
 ## Features
 
-| Feature | Status | Files | Agents | Last Edited |
-| ------- | ------ | ----- | ------ | ----------- |
-| [snake](features/snake/) | complete | [plan](features/snake/plan.md), [review](features/snake/review.md) | @product-manager, @architect, @tech-lead, @software-developer, @ux-designer, @visual-designer, @qa-engineer, @security, @devops, @gamer | 2026-01-24 |
-| [mamba](features/mamba/) | complete | [plan](features/mamba/plan.md), [execution](features/mamba/execution.md), [review](features/mamba/review.md) | @product-manager, @architect, @tech-lead, @software-developer, @ux-designer, @visual-designer, @qa-engineer, @security, @devops, @gamer | 2026-01-25 |
-| [beast](features/beast/) | complete | [plan](features/beast/plan.md), [execution](features/beast/execution.md), [review](features/beast/review.md) | @product-manager, @architect, @tech-lead, @software-developer, @ux-designer, @visual-designer, @qa-engineer, @security, @devops, @gamer | 2026-01-25 |
-| [pinspiration](features/pinspiration/) | complete | [plan](features/pinspiration/plan.md), [execution](features/pinspiration/execution.md), [review](features/pinspiration/review.md) | @product-manager, @architect, @tech-lead, @software-developer, @ux-designer, @visual-designer, @qa-engineer, @security, @devops, @gamer | 2026-01-25 |
-| [landing-page-ux](features/landing-page-ux/) | complete | [review](features/landing-page-ux/review.md) | @ux-designer, @visual-designer, @software-developer | 2026-01-24 |
+| Feature           | Status | Files | Agents | Last Edited |
+| ----------------- | ------ | ----- | ------ | ----------- |
+| _No features yet_ | —      | —     | —      | —           |
 
 <!--
 USAGE:

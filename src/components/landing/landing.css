@@ -848,6 +848,121 @@
   color: var(--color-text);
 }
 
+/* Hotfix Section */
+.hotfix-section {
+  max-width: 600px;
+  margin: var(--space-16) auto 0;
+  text-align: center;
+}
+
+.hotfix-demo {
+  padding: var(--space-6);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-4);
+}
+
+.hotfix-example {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hotfix-scenario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+}
+
+.hotfix-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hotfix-description {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: rgba(239, 68, 68, 0.1);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.hotfix-command-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+}
+
+.hotfix-command {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.hotfix-prompt {
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0;
+  padding-left: var(--space-4);
+}
+
+.hotfix-result {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: var(--color-surface-hover);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+.hotfix-result-label {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  flex-shrink: 0;
+}
+
+.hotfix-file {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.hotfix-note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: rgba(34, 197, 94, 0.1);
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.note-icon {
+  font-size: var(--text-base);
+  flex-shrink: 0;
+}
+
+.note-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .hero {
