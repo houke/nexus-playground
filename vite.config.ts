@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import { VitePWA } from 'vite-plugin-pwa'
 import { resolve } from 'path'
 
@@ -103,5 +103,20 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+  },
+
+  test: {
+    // Vitest configuration
+    globals: true,
+    environment: 'jsdom',
+    include: ['**/__tests__/**/*.test.ts', '**/*.test.ts'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/cypress/**',
+      '**/.{idea,git,cache,output,temp}/**',
+      '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*',
+      '**/tests/**', // Exclude E2E tests in tests/ folder (Playwright)
+    ],
   },
 })

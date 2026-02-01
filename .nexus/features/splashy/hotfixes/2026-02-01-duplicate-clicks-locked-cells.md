@@ -74,10 +74,11 @@ These guards return `false` early, preventing:
 
 ### Files Modified
 
-| File                                                | Change                                                               |
-| --------------------------------------------------- | -------------------------------------------------------------------- |
+| File                                                | Change                                                                |
+| --------------------------------------------------- | --------------------------------------------------------------------- |
 | `experiments/splashy/game/engine.ts`                | Added two guard clauses in `paintCell()` method (lines ~118-124)     |
 | `experiments/splashy/game/__tests__/engine.test.ts` | Updated test for locked cells + added test for same-color prevention |
+| `vite.config.ts`                                    | Added Vitest config to exclude Playwright tests from unit test runs  |
 
 ### Tests Added/Modified
 
@@ -142,3 +143,4 @@ These guards return `false` early, preventing:
 - E2E tests showed 61 failures, but these are pre-existing infrastructure issues (missing Webkit browser, outdated selectors, timeouts) unrelated to this hotfix
 - Unit test coverage is comprehensive and validates the fix thoroughly
 - Guard order matters: same-color check before lock check prevents unnecessary lock checks
+- **Follow-up fix**: Fixed Vitest attempting to run Playwright tests by adding test config to vite.config.ts and excluding `tests/` folder. Changed import from `vite` to `vitest/config` to support test configuration.
