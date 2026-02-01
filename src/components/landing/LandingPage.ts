@@ -62,6 +62,14 @@ const experiments = [
     available: true,
   },
   {
+    id: 'splashy',
+    name: 'Splashy',
+    emoji: '🎨',
+    description: 'Kid-friendly paint by numbers with beloved characters',
+    tags: ['Game', 'Kids', 'Offline'],
+    available: true,
+  },
+  {
     id: 'coming-soon',
     name: 'Coming Soon',
     emoji: '🔮',
@@ -245,10 +253,10 @@ export function renderLandingPage(container: HTMLElement): void {
                 <div class="step-header">
                   <span class="step-number">1</span>
                   <span class="step-title">Plan</span>
-                  <span class="step-badge">project-planning</span>
+                  <span class="step-badge">nexus-planning</span>
                 </div>
                 <div class="step-content">
-                  <code class="step-command"><span class="prompt-trigger">/</span>project-planning</code>
+                  <code class="step-command"><span class="prompt-trigger">/</span>nexus-planning</code>
                   <p class="step-prompt">"<span class="prompt-text" data-field="input">Build a habit tracker app</span>"</p>
                   <p class="step-description">All agents collaborate to create a comprehensive action plan</p>
                 </div>
@@ -268,10 +276,10 @@ export function renderLandingPage(container: HTMLElement): void {
                 <div class="step-header">
                   <span class="step-number">2</span>
                   <span class="step-title">Execute</span>
-                  <span class="step-badge">project-execution</span>
+                  <span class="step-badge">nexus-execution</span>
                 </div>
                 <div class="step-content">
-                  <code class="step-command"><span class="prompt-trigger">/</span>project-execution</code>
+                  <code class="step-command"><span class="prompt-trigger">/</span>nexus-execution</code>
                   <p class="step-prompt">"Implement <span class="step-file-ref" data-field="plan-ref">habit-tracker/plan.md</span>"</p>
                   <p class="step-description">Agents implement the plan, delegating tasks by expertise</p>
                 </div>
@@ -291,10 +299,10 @@ export function renderLandingPage(container: HTMLElement): void {
                 <div class="step-header">
                   <span class="step-number">3</span>
                   <span class="step-title">Review</span>
-                  <span class="step-badge">project-review</span>
+                  <span class="step-badge">nexus-review</span>
                 </div>
                 <div class="step-content">
-                  <code class="step-command"><span class="prompt-trigger">/</span>project-review</code>
+                  <code class="step-command"><span class="prompt-trigger">/</span>nexus-review</code>
                   <p class="step-prompt">"Review and fix <span class="step-file-ref" data-field="review-ref">habit-tracker/execution.md</span>"</p>
                   <p class="step-description">Security, QA, and Tech Lead audit and auto-fix issues</p>
                 </div>
@@ -333,7 +341,7 @@ export function renderLandingPage(container: HTMLElement): void {
           <div class="sync-section">
             <h3 class="subsection-title">Keep Docs in Sync</h3>
             <p class="subsection-description">
-              When you work outside the formal workflow, use <code class="inline-code">/project-sync</code> to reconcile your documentation:
+              When you work outside the formal workflow, use <code class="inline-code">/nexus-sync</code> to reconcile your documentation:
             </p>
             
             <div class="sync-demo">
@@ -346,7 +354,7 @@ export function renderLandingPage(container: HTMLElement): void {
                 </div>
               </div>
               <div class="sync-arrow">
-                <code class="sync-command"><span class="prompt-trigger">/</span>project-sync</code>
+                <code class="sync-command"><span class="prompt-trigger">/</span>nexus-sync</code>
               </div>
               <div class="sync-after">
                 <span class="sync-label">After sync</span>
@@ -363,7 +371,7 @@ export function renderLandingPage(container: HTMLElement): void {
           <div class="hotfix-section">
             <h3 class="subsection-title">Quick Hotfixes</h3>
             <p class="subsection-description">
-              Need to fix a critical bug fast? Use <code class="inline-code">/project-hotfix</code> to document urgent fixes without disrupting your main features:
+              Need to fix a critical bug fast? Use <code class="inline-code">/nexus-hotfix</code> to document urgent fixes without disrupting your main features:
             </p>
             
             <div class="hotfix-demo">
@@ -376,7 +384,7 @@ export function renderLandingPage(container: HTMLElement): void {
                   </div>
                 </div>
                 <div class="hotfix-command-wrapper">
-                  <code class="hotfix-command"><span class="prompt-trigger">/</span>project-hotfix</code>
+                  <code class="hotfix-command"><span class="prompt-trigger">/</span>nexus-hotfix</code>
                   <p class="hotfix-prompt">"Fix login button not responding on mobile"</p>
                 </div>
                 <div class="hotfix-result">

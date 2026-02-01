@@ -10,11 +10,13 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
     "lint": "eslint src experiments --ext .ts",
     "lint:fix": "eslint src experiments --ext .ts --fix",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.ts\" \"experiments/**/*.ts\"",
-    "format:check": "prettier --check \"src/**/*.ts\" \"experiments/**/*.ts\""
+    "format:check": "prettier --check \"src/**/*.ts\" \"experiments/**/*.ts\"",
+    "sync": "./sync-to-nexus.sh"
   },
   "keywords": [
     "nexus",

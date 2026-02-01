@@ -22,6 +22,7 @@ export default defineConfig({
         mamba: resolve(__dirname, 'experiments/mamba/index.html'),
         beast: resolve(__dirname, 'experiments/beast/index.html'),
         pinspiration: resolve(__dirname, 'experiments/pinspiration/index.html'),
+        splashy: resolve(__dirname, 'experiments/splashy/index.html'),
       },
     },
   },
@@ -63,7 +64,8 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,mp3,wav}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,mp3,wav,jpg,jpeg}'],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB to allow large images
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

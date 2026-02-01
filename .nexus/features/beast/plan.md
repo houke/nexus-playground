@@ -24,7 +24,7 @@ status: 'complete'
 >
 > - `draft` → `in-progress`: When execution workflow starts
 > - `in-progress` → `complete`: When review workflow finishes
-> - If work happens outside formal workflows, run `project-sync` prompt to reconcile
+> - If work happens outside formal workflows, run `nexus-sync` prompt to reconcile
 
 ## 1. Executive Summary
 
@@ -706,7 +706,7 @@ _(Define project-specific terms)_
 
 **If work happens outside formal workflows** (e.g., direct agent chats):
 
-1. Run the `project-sync` prompt to reconcile this plan
+1. Run the `nexus-sync` prompt to reconcile this plan
 2. See [keeping-plans-in-sync.md](../docs/keeping-plans-in-sync.md) for details
 
 ---

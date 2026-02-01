@@ -6,9 +6,9 @@
 
 ## Features
 
-| Feature           | Status | Files | Agents | Last Edited |
-| ----------------- | ------ | ----- | ------ | ----------- |
-| _No features yet_ | —      | —     | —      | —           |
+| Feature                      | Status   | Files                                                                                                                                                                                                                                                                                                                                             | Agents                                                                                                                                  | Last Edited |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [splashy](features/splashy/) | complete | [plan](features/splashy/plan.md), [execution](features/splashy/execution.md), [review](features/splashy/review.md), [hotfixes](features/splashy/hotfixes/2025-01-28-confetti-persist.md), [hotfix-2](features/splashy/hotfixes/2026-01-28-palette-overflow.md), [hotfix-3](features/splashy/hotfixes/2026-02-01-duplicate-clicks-locked-cells.md) | @product-manager, @architect, @ux-designer, @visual-designer, @gamer, @software-developer, @tech-lead, @qa-engineer, @security, @devops | 2026-02-01  |
 
 <!--
 USAGE:
@@ -57,7 +57,7 @@ LAST EDITED: Date of most recent change to any document in the feature folder
 2. Copy template: `cp .nexus/templates/plan.template.md .nexus/features/<slug>/plan.md`
 3. Add row to table above
 4. Fill out the plan document
-5. Use `project-execution` prompt to begin implementation
+5. Use `nexus-execution` prompt to begin implementation
 
 ## Workflow Quick Reference
 

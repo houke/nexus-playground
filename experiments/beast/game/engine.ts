@@ -1,5 +1,4 @@
 // Beast Game - Core Engine
-/* eslint-disable no-undef */
 import type { GameState, GameStatus, Direction, Entity } from './types'
 import {
   GRID_WIDTH,

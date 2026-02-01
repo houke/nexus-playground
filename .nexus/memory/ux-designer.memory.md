@@ -15,7 +15,6 @@ Example entry:
 ### Navigation Style
 - **Preference**: Minimal navigation, prefer gestures
 - **Reason**: User wants a clean, focused interface
-- **Added**: 2026-01-25
 -->
 
 ## User Flow Patterns

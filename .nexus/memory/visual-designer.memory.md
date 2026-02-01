@@ -12,14 +12,12 @@ Persistent preferences and learned patterns for the **@visual-designer** agent.
 
 - **Preference**: All designs should use dark mode by default
 - **Reason**: User preference for consistent dark aesthetic across all experiments
-- **Added**: 2025-01-25
 
 <!--
 Example entry:
 ### Brand Color
 - **Preference**: Primary brand color is #4F46E5
 - **Reason**: Matches company brand guidelines
-- **Added**: 2026-01-25
 -->
 
 ## Color Palette

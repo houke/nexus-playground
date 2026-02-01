@@ -15,7 +15,6 @@ Example entry:
 ### Accessibility Priority
 - **Preference**: Accessibility features are always P0
 - **Reason**: Core value, not nice-to-have
-- **Added**: 2026-01-25
 -->
 
 ## User Personas

@@ -15,7 +15,6 @@ Example entry:
 ### Preferred Mechanics
 - **Preference**: Favor roguelike progression systems
 - **Reason**: User enjoys permadeath with persistent unlocks
-- **Added**: 2026-01-25
 -->
 
 ## Gamification Patterns

@@ -15,7 +15,6 @@ Example entry:
 ### Screen Reader Testing
 - **Preference**: Always test with VoiceOver and NVDA
 - **Reason**: User base includes many screen reader users
-- **Added**: 2026-01-25
 -->
 
 ## Testing Priorities

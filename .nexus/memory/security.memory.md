@@ -15,7 +15,6 @@ Example entry:
 ### Data Classification
 - **Preference**: App handles PII - apply strict data handling rules
 - **Reason**: Regulatory compliance required
-- **Added**: 2026-01-25
 -->
 
 ## Security Requirements
